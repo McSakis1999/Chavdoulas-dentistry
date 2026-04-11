@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "faq": "FAQ"
+  },
+  "hero": {
+    "title": "Modern Dentistry for a Brighter Smile",
+    "subtitle": "Professional dental care in a comfortable and welcoming environment. We use the latest technology to ensure the best results for our patients.",
+    "cta": "Book an Appointment"
+  },
+  "services": {
+    "title": "Our Services",
+    "viewAll": "View All Services",
+    "general": "General Dentistry",
+    "cosmetic": "Cosmetic Dentistry",
+    "implants": "Dental Implants",
+    "orthodontics": "Orthodontics",
+    "emergency": "Emergency Care"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send Message"
+    }
+  },
+  "Metadata": {
+    "home": {
+      "title": "Elite Dentistry - Modern Dental Care",
+      "description": "Experience professional dental care with a personal touch. Elite Dentistry offers general, cosmetic, and emergency dental services."
+    }
+  }
+}

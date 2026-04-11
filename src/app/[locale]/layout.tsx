@@ -5,7 +5,18 @@ import {routing} from '@/i18n/routing';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import {ReactNode} from 'react';
+import { Inter, Outfit } from 'next/font/google';
 import '../../index.css';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans',
+});
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  variable: '--font-heading',
+});
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({locale}));
@@ -30,8 +41,8 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body className="antialiased">
+    <html lang={locale} className={`${inter.variable} ${outfit.variable}`}>
+      <body className="font-sans antialiased">
         <NextIntlClientProvider messages={messages}>
           <div className="flex min-h-screen flex-col">
             <Navbar />

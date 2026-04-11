@@ -66,11 +66,13 @@ const Navbar = () => {
             <Globe className="h-4 w-4" />
           </Button>
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
-              </Button>
-            </SheetTrigger>
+            <SheetTrigger
+              render={
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              }
+            />
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
               <div className="flex flex-col space-y-6 pt-10">
                 {navItems.map((item) => (

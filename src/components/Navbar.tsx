@@ -4,6 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Link, useRouter, usePathname } from '@/i18n/routing';
 import React from 'react';
 import { Menu, Globe } from 'lucide-react';
+import Image from 'next/image';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
@@ -29,13 +30,18 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="flex items-center space-x-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <span className="text-xl font-bold">Χ</span>
+    <nav className="sticky top-0 z-50 w-full border-b bg-background/90 backdrop-blur-md shadow-sm">
+      <div className="container mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
+        <Link href="/" className="flex items-center transition-transform hover:scale-105">
+          <div className="relative h-14 w-48">
+            <Image
+              src="/logo.png"
+              alt="ΧΑΒΔΟΥΛΑΣ ΘΩΜΑΣ"
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
-          <span className="text-xl font-bold tracking-tight text-primary">ΧΑΒΔΟΥΛΑΣ ΘΩΜΑΣ</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -55,7 +61,7 @@ const Navbar = () => {
             <Globe className="h-4 w-4" />
             {locale.toUpperCase()}
           </Button>
-          <Link href="/contact" className={buttonVariants()}>
+          <Link href="/contact" className={buttonVariants({ size: 'lg', className: 'px-8 font-semibold shadow-md hover:shadow-lg transition-all' })}>
             {tHero('cta')}
           </Link>
         </div>
@@ -84,7 +90,7 @@ const Navbar = () => {
                 <Link
                   href="/contact"
                   onClick={() => setIsOpen(false)}
-                  className={buttonVariants({ className: 'w-full' })}
+                  className={buttonVariants({ size: 'lg', className: 'w-full font-semibold' })}
                 >
                   {tHero('cta')}
                 </Link>

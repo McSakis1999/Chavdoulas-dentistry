@@ -39,30 +39,30 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-muted/30 py-20 lg:py-32">
-        <div className="container mx-auto px-4">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+      <section className="relative overflow-hidden bg-muted/30 py-24 lg:py-40">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid items-center gap-16 lg:grid-cols-2">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="space-y-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="space-y-10"
             >
-              <div className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
-                <span className="mr-2 flex h-2 w-2 rounded-full bg-primary"></span>
+              <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold tracking-wide text-primary uppercase">
+                <span className="mr-2 flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
                 {tHero('badge')}
               </div>
-              <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
+              <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl lg:text-8xl leading-[1.1]">
                 {tHero('title')}
               </h1>
-              <p className="max-w-[600px] text-lg text-muted-foreground md:text-xl">
+              <p className="max-w-[600px] text-xl text-muted-foreground md:text-2xl leading-relaxed">
                 {tHero('subtitle')}
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/contact" className={buttonVariants({ size: 'lg', className: 'h-12 px-8 text-base' })}>
+              <div className="flex flex-wrap gap-6">
+                <Link href="/contact" className={buttonVariants({ size: 'lg', className: 'h-16 px-10 text-lg font-bold shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1' })}>
                   {tHero('cta')}
                 </Link>
-                <Link href="/services" className={buttonVariants({ size: 'lg', variant: 'outline', className: 'h-12 px-8 text-base' })}>
+                <Link href="/services" className={buttonVariants({ size: 'lg', variant: 'outline', className: 'h-16 px-10 text-lg font-bold border-2 hover:bg-primary/5 transition-all' })}>
                   {tServices('viewAll')}
                 </Link>
               </div>

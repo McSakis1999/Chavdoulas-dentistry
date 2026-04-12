@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
+import Image from 'next/image';
 import { Phone, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
@@ -15,11 +16,15 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="space-y-4">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <span className="text-lg font-bold">Χ</span>
+            <Link href="/" className="flex items-center">
+              <div className="relative h-12 w-40">
+                <Image
+                  src="/logo.png"
+                  alt="ΧΑΒΔΟΥΛΑΣ ΘΩΜΑΣ"
+                  fill
+                  className="object-contain"
+                />
               </div>
-              <span className="text-lg font-bold tracking-tight text-primary">ΧΑΒΔΟΥΛΑΣ ΘΩΜΑΣ</span>
             </Link>
             <p className="text-sm text-muted-foreground">
               {tFooter('desc')}

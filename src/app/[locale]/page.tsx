@@ -17,13 +17,13 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
   };
 }
 
-export default function Home() {
-  const t = useTranslations();
-  const tFeatures = useTranslations('features');
-  const tServices = useTranslations('services');
-  const tTestimonials = useTranslations('testimonials');
-  const tHero = useTranslations('hero');
-  const tCTA = useTranslations('cta');
+export default async function Home() {
+  const t = await getTranslations();
+  const tFeatures = await getTranslations('features');
+  const tServices = await getTranslations('services');
+  const tTestimonials = await getTranslations('testimonials');
+  const tHero = await getTranslations('hero');
+  const tCTA = await getTranslations('cta');
 
   const features = [
     { icon: <Shield className="h-6 w-6 text-primary" />, title: tFeatures('tech.title'), desc: tFeatures('tech.desc') },

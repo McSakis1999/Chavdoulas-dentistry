@@ -1,12 +1,12 @@
-import {useTranslations} from 'next-intl';
+import {getTranslations} from 'next-intl/server';
 import {Link} from '@/i18n/routing';
 import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
 import {Button, buttonVariants} from '@/components/ui/button';
 import * as motion from 'motion/react-client';
 import { Stethoscope, Sparkles, Activity, ShieldAlert, HeartPulse, Microscope } from 'lucide-react';
 
-export default function Services() {
-  const t = useTranslations('services');
+export default async function Services() {
+  const t = await getTranslations('services');
 
   const services = [
     {

@@ -1,10 +1,10 @@
-import {useTranslations} from 'next-intl';
+import {getTranslations} from 'next-intl/server';
 import {Card, CardContent} from '@/components/ui/card';
 import * as motion from 'motion/react-client';
 import { Award, Users, Heart, GraduationCap, CheckCircle2 } from 'lucide-react';
 
-export default function About() {
-  const t = useTranslations('about');
+export default async function About() {
+  const t = await getTranslations('about');
 
   const stats = [
     { icon: <Users className="h-6 w-6" />, label: t('stats.patients'), value: '2,000+' },

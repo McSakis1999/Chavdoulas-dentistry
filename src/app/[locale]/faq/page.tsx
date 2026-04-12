@@ -1,4 +1,4 @@
-import {useTranslations} from 'next-intl';
+import {getTranslations} from 'next-intl/server';
 import {Card} from '@/components/ui/card';
 import * as motion from 'motion/react-client';
 import {
@@ -8,8 +8,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 
-export default function FAQ() {
-  const t = useTranslations('faq');
+export default async function FAQ() {
+  const t = await getTranslations('faq');
 
   const faqs = [
     {

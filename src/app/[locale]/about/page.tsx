@@ -4,13 +4,13 @@ import * as motion from 'motion/react-client';
 import { Award, Users, Heart, GraduationCap, CheckCircle2 } from 'lucide-react';
 
 export default function About() {
-  const t = useTranslations();
+  const t = useTranslations('about');
 
   const stats = [
-    { icon: <Users className="h-6 w-6" />, label: 'Happy Patients', value: '2,000+' },
-    { icon: <Award className="h-6 w-6" />, label: 'Years Experience', value: '15+' },
-    { icon: <GraduationCap className="h-6 w-6" />, label: 'Certifications', value: '25+' },
-    { icon: <Heart className="h-6 w-6" />, label: 'Success Rate', value: '99%' },
+    { icon: <Users className="h-6 w-6" />, label: t('stats.patients'), value: '2,000+' },
+    { icon: <Award className="h-6 w-6" />, label: t('stats.experience'), value: '15+' },
+    { icon: <GraduationCap className="h-6 w-6" />, label: t('stats.certifications'), value: '25+' },
+    { icon: <Heart className="h-6 w-6" />, label: t('stats.success'), value: '99%' },
   ];
 
   return (
@@ -24,12 +24,12 @@ export default function About() {
               animate={{ opacity: 1, x: 0 }}
               className="space-y-6"
             >
-              <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">Our Mission is Your Smile</h1>
+              <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">{t('title')}</h1>
               <p className="text-lg text-muted-foreground">
-                At Elite Dentistry, we believe that everyone deserves a healthy, beautiful smile. Our clinic was founded on the principles of integrity, excellence, and patient-centered care.
+                {t('desc1')}
               </p>
               <p className="text-lg text-muted-foreground">
-                We combine the latest dental technology with a gentle, compassionate approach to ensure that every visit is comfortable and effective.
+                {t('desc2')}
               </p>
             </motion.div>
             <motion.div
@@ -82,32 +82,32 @@ export default function About() {
               <div className="overflow-hidden rounded-3xl shadow-xl">
                 <img
                   src="https://picsum.photos/seed/doctor-portrait/800/1000"
-                  alt="Dr. Alex Rivera"
+                  alt="ΧΑΒΔΟΥΛΑΣ ΘΩΜΑΣ"
                   className="h-full w-full object-cover"
                   referrerPolicy="no-referrer"
                 />
               </div>
             </div>
             <div className="order-1 space-y-6 lg:order-2">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Meet Dr. Alex Rivera</h2>
-              <p className="text-sm font-semibold uppercase tracking-wider text-primary">Lead Dentist & Founder</p>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{t('doctor.title')}</h2>
+              <p className="text-sm font-semibold uppercase tracking-wider text-primary">{t('doctor.role')}</p>
               <p className="text-lg text-muted-foreground">
-                Dr. Rivera graduated with honors from the University of Dental Medicine and has since dedicated his career to mastering the art and science of dentistry.
+                {t('doctor.bio1')}
               </p>
               <p className="text-lg text-muted-foreground">
-                With over 15 years of experience, he specializes in cosmetic dentistry and dental implants. He is a member of the American Academy of Cosmetic Dentistry and stays at the forefront of the field through continuous education.
+                {t('doctor.bio2')}
               </p>
               <div className="space-y-4 pt-4">
-                <h4 className="font-bold">Credentials & Education</h4>
+                <h4 className="font-bold">{t('doctor.credentials')}</h4>
                 <ul className="space-y-2 text-muted-foreground">
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-primary" /> Doctorate of Dental Surgery (DDS)
+                    <CheckCircle2 className="h-4 w-4 text-primary" /> {t('doctor.c1')}
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-primary" /> Master's in Implantology
+                    <CheckCircle2 className="h-4 w-4 text-primary" /> {t('doctor.c2')}
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-primary" /> Certified Invisalign Provider
+                    <CheckCircle2 className="h-4 w-4 text-primary" /> {t('doctor.c3')}
                   </li>
                 </ul>
               </div>

@@ -6,49 +6,49 @@ import * as motion from 'motion/react-client';
 import { Stethoscope, Sparkles, Activity, ShieldAlert, HeartPulse, Microscope } from 'lucide-react';
 
 export default function Services() {
-  const t = useTranslations();
+  const t = useTranslations('services');
 
   const services = [
     {
       id: 'general',
-      title: t('services.general'),
+      title: t('general'),
       icon: <Stethoscope className="h-8 w-8" />,
-      description: 'Routine checkups, cleanings, and preventative care to keep your teeth healthy and strong.',
+      description: t('generalDesc'),
       features: ['Professional Cleaning', 'Oral Exams', 'Digital X-rays', 'Fluoride Treatment']
     },
     {
       id: 'cosmetic',
-      title: t('services.cosmetic'),
+      title: t('cosmetic'),
       icon: <Sparkles className="h-8 w-8" />,
-      description: 'Enhance your smile with our range of aesthetic treatments designed to give you confidence.',
+      description: t('cosmeticDesc'),
       features: ['Teeth Whitening', 'Porcelain Veneers', 'Bonding', 'Smile Makeovers']
     },
     {
       id: 'implants',
-      title: t('services.implants'),
+      title: t('implants'),
       icon: <HeartPulse className="h-8 w-8" />,
-      description: 'Permanent solutions for missing teeth that look, feel, and function like natural teeth.',
+      description: t('implantsDesc'),
       features: ['Single Tooth Implants', 'All-on-4', 'Bone Grafting', 'Implant Restoration']
     },
     {
       id: 'orthodontics',
-      title: t('services.orthodontics'),
+      title: t('orthodontics'),
       icon: <Activity className="h-8 w-8" />,
-      description: 'Straighten your teeth and correct bite issues with modern orthodontic solutions.',
+      description: t('orthodonticsDesc'),
       features: ['Invisalign', 'Clear Braces', 'Traditional Braces', 'Retainers']
     },
     {
       id: 'emergency',
-      title: t('services.emergency'),
+      title: t('emergency'),
       icon: <ShieldAlert className="h-8 w-8" />,
-      description: 'Immediate care for dental emergencies including toothaches, broken teeth, and more.',
+      description: t('emergencyDesc'),
       features: ['Same-day Appointments', 'Pain Relief', 'Tooth Repair', 'Infection Control']
     },
     {
       id: 'restorative',
-      title: 'Restorative Dentistry',
+      title: t('restorative'),
       icon: <Microscope className="h-8 w-8" />,
-      description: 'Repairing damaged teeth and restoring function with high-quality materials.',
+      description: t('restorativeDesc'),
       features: ['Crowns & Bridges', 'Fillings', 'Root Canals', 'Dentures']
     }
   ];
@@ -63,7 +63,7 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl"
           >
-            {t('services.title')}
+            {t('title')}
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -71,7 +71,7 @@ export default function Services() {
             transition={{ delay: 0.1 }}
             className="mx-auto max-w-[700px] text-lg text-muted-foreground"
           >
-            Comprehensive dental solutions tailored to your unique needs. We combine clinical excellence with a gentle touch.
+            {t('subtitle')}
           </motion.p>
         </div>
       </section>
@@ -106,7 +106,7 @@ export default function Services() {
                       ))}
                     </ul>
                     <Link href="/contact" className={buttonVariants({ variant: 'outline', className: 'w-full' })}>
-                      Learn More
+                      {t('learnMore')}
                     </Link>
                   </CardContent>
                 </Card>
@@ -119,14 +119,14 @@ export default function Services() {
       {/* FAQ Link Section */}
       <section className="bg-primary py-20 text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="mb-6 text-3xl font-bold">Have questions about our treatments?</h2>
-          <p className="mb-8 text-primary-foreground/80">Check out our frequently asked questions or contact our friendly team.</p>
+          <h2 className="mb-6 text-3xl font-bold">{t('cta.title')}</h2>
+          <p className="mb-8 text-primary-foreground/80">{t('cta.subtitle')}</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/faq" className={buttonVariants({ variant: 'secondary', size: 'lg' })}>
-              Visit FAQ
+              {t('cta.visitFaq')}
             </Link>
             <Link href="/contact" className={buttonVariants({ variant: 'outline', size: 'lg', className: 'bg-transparent text-white border-white hover:bg-white/10' })}>
-              Contact Us
+              {t('cta.contactUs')}
             </Link>
           </div>
         </div>

@@ -11,18 +11,18 @@ import * as motion from 'motion/react-client';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 
 export default function Contact() {
-  const t = useTranslations();
+  const t = useTranslations('contact');
 
   const contactInfo = [
-    { icon: <Phone className="h-5 w-5" />, label: 'Phone', value: '+1 (555) 123-4567' },
-    { icon: <Mail className="h-5 w-5" />, label: 'Email', value: 'hello@elitedentistry.com' },
-    { icon: <MapPin className="h-5 w-5" />, label: 'Address', value: '123 Dental Plaza, Medical District, City' },
-    { icon: <Clock className="h-5 w-5" />, label: 'Hours', value: 'Mon-Fri: 9am - 6pm' },
+    { icon: <Phone className="h-5 w-5" />, label: t('labels.phone'), value: t('phone') },
+    { icon: <Mail className="h-5 w-5" />, label: t('labels.email'), value: t('email') },
+    { icon: <MapPin className="h-5 w-5" />, label: t('labels.address'), value: t('address') },
+    { icon: <Clock className="h-5 w-5" />, label: t('labels.hours'), value: t('hours') },
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Thank you for your message! We will get back to you soon.');
+    alert(t('form.success'));
   };
 
   return (
@@ -30,9 +30,9 @@ export default function Contact() {
       {/* Header */}
       <section className="bg-muted/30 py-16 lg:py-24">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl">{t('contact.title')}</h1>
+          <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl">{t('title')}</h1>
           <p className="mx-auto max-w-[700px] text-lg text-muted-foreground">
-            We're here to help you achieve your best smile. Reach out to us via phone, email, or the contact form below.
+            {t('subtitle')}
           </p>
         </div>
       </section>
@@ -43,7 +43,7 @@ export default function Contact() {
           <div className="grid gap-12 lg:grid-cols-2">
             {/* Contact Info */}
             <div className="space-y-8">
-              <h2 className="text-3xl font-bold">Get in Touch</h2>
+              <h2 className="text-3xl font-bold">{t('getInTouch')}</h2>
               <div className="grid gap-6 sm:grid-cols-2">
                 {contactInfo.map((info, i) => (
                   <Card key={i} className="border-none bg-muted/30">
@@ -70,7 +70,7 @@ export default function Contact() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="flex flex-col items-center gap-2 rounded-2xl bg-background p-4 shadow-xl">
                     <MapPin className="h-8 w-8 text-primary" />
-                    <span className="font-bold">Find us here</span>
+                    <span className="font-bold">{t('findUs')}</span>
                   </div>
                 </div>
               </div>
@@ -84,23 +84,23 @@ export default function Contact() {
             >
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="name">{t('contact.form.name')}</Label>
-                  <Input id="name" placeholder="Your Name" required className="h-12" />
+                  <Label htmlFor="name">{t('form.name')}</Label>
+                  <Input id="name" placeholder={t('form.placeholderName')} required className="h-12" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email">{t('contact.form.email')}</Label>
-                  <Input id="email" type="email" placeholder="your@email.com" required className="h-12" />
+                  <Label htmlFor="email">{t('form.email')}</Label>
+                  <Input id="email" type="email" placeholder={t('form.placeholderEmail')} required className="h-12" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number</Label>
-                  <Input id="phone" type="tel" placeholder="+1 (555) 000-0000" className="h-12" />
+                  <Label htmlFor="phone">{t('form.phone')}</Label>
+                  <Input id="phone" type="tel" placeholder={t('form.placeholderPhone')} className="h-12" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="message">{t('contact.form.message')}</Label>
-                  <Textarea id="message" placeholder="How can we help you?" required className="min-h-[150px]" />
+                  <Label htmlFor="message">{t('form.message')}</Label>
+                  <Textarea id="message" placeholder={t('form.placeholderMessage')} required className="min-h-[150px]" />
                 </div>
                 <Button type="submit" size="lg" className="w-full h-14 text-lg gap-2">
-                  <Send className="h-5 w-5" /> {t('contact.form.submit')}
+                  <Send className="h-5 w-5" /> {t('form.submit')}
                 </Button>
               </form>
             </motion.div>

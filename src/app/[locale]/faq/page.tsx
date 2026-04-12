@@ -9,32 +9,32 @@ import {
 } from "@/components/ui/accordion"
 
 export default function FAQ() {
-  const t = useTranslations();
+  const t = useTranslations('faq');
 
   const faqs = [
     {
-      question: 'How often should I visit the dentist?',
-      answer: 'For most people, we recommend a professional cleaning and checkup every six months. However, depending on your oral health, we might suggest more frequent visits.'
+      question: t('q1'),
+      answer: t('a1')
     },
     {
-      question: 'Do you accept dental insurance?',
-      answer: 'Yes, we accept most major dental insurance plans. Our team can help you understand your coverage and maximize your benefits.'
+      question: t('q2'),
+      answer: t('a2')
     },
     {
-      question: 'What should I do in a dental emergency?',
-      answer: 'If you have a dental emergency, call us immediately. We offer same-day appointments for urgent cases to provide quick relief and prevent further damage.'
+      question: t('q3'),
+      answer: t('a3')
     },
     {
-      question: 'Are dental implants right for me?',
-      answer: 'Dental implants are an excellent solution for many people with missing teeth. During a consultation, we will evaluate your bone density and overall health to determine if you are a good candidate.'
+      question: t('q4'),
+      answer: t('a4')
     },
     {
-      question: 'How can I whiten my teeth safely?',
-      answer: 'We offer professional teeth whitening treatments that are much more effective and safer than over-the-counter products. We can provide both in-office treatments and take-home kits.'
+      question: t('q5'),
+      answer: t('a5')
     },
     {
-      question: 'Is Invisalign as effective as traditional braces?',
-      answer: 'For many patients, Invisalign is just as effective as traditional braces for correcting alignment and bite issues, with the added benefit of being nearly invisible and removable.'
+      question: t('q6'),
+      answer: t('a6')
     }
   ];
 
@@ -43,9 +43,9 @@ export default function FAQ() {
       {/* Header */}
       <section className="bg-muted/30 py-16 lg:py-24">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl">Frequently Asked Questions</h1>
+          <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl">{t('title')}</h1>
           <p className="mx-auto max-w-[700px] text-lg text-muted-foreground">
-            Everything you need to know about our services and dental health. Can't find what you're looking for? Contact us directly.
+            {t('subtitle')}
           </p>
         </div>
       </section>
@@ -80,14 +80,14 @@ export default function FAQ() {
       <section className="bg-muted/30 py-24">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold tracking-tight">Dental Health Tips</h2>
-            <p className="text-muted-foreground">Stay informed with our latest articles on oral hygiene and modern dentistry.</p>
+            <h2 className="text-3xl font-bold tracking-tight">{t('tips.title')}</h2>
+            <p className="text-muted-foreground">{t('tips.subtitle')}</p>
           </div>
           <div className="grid gap-8 md:grid-cols-3">
             {[
-              { title: 'The Importance of Flossing', category: 'Prevention', date: 'Oct 12, 2023' },
-              { title: 'Choosing the Right Toothbrush', category: 'Oral Care', date: 'Sep 28, 2023' },
-              { title: 'What to Expect During a Root Canal', category: 'Treatments', date: 'Aug 15, 2023' }
+              { title: t('tips.t1'), category: 'Prevention', date: 'Oct 12, 2023' },
+              { title: t('tips.t2'), category: 'Oral Care', date: 'Sep 28, 2023' },
+              { title: t('tips.t3'), category: 'Treatments', date: 'Aug 15, 2023' }
             ].map((post, i) => (
               <Card key={i} className="overflow-hidden border-none shadow-lg transition-transform hover:-translate-y-1">
                 <img

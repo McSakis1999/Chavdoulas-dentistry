@@ -19,16 +19,21 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
 
 export default function Home() {
   const t = useTranslations();
+  const tFeatures = useTranslations('features');
+  const tServices = useTranslations('services');
+  const tTestimonials = useTranslations('testimonials');
+  const tHero = useTranslations('hero');
+  const tCTA = useTranslations('cta');
 
   const features = [
-    { icon: <Shield className="h-6 w-6 text-primary" />, title: 'Advanced Technology', desc: 'We use state-of-the-art equipment for precise diagnostics and treatment.' },
-    { icon: <Star className="h-6 w-6 text-primary" />, title: 'Expert Team', desc: 'Our dentists are highly qualified with years of experience in various specialties.' },
-    { icon: <Clock className="h-6 w-6 text-primary" />, title: 'Emergency Care', desc: 'Same-day appointments for dental emergencies to get you out of pain fast.' },
+    { icon: <Shield className="h-6 w-6 text-primary" />, title: tFeatures('tech.title'), desc: tFeatures('tech.desc') },
+    { icon: <Star className="h-6 w-6 text-primary" />, title: tFeatures('expert.title'), desc: tFeatures('expert.desc') },
+    { icon: <Clock className="h-6 w-6 text-primary" />, title: tFeatures('emergency.title'), desc: tFeatures('emergency.desc') },
   ];
 
   const testimonials = [
-    { name: 'Sarah Johnson', role: 'Patient', content: 'The best dental experience I have ever had. The staff is incredibly friendly and the clinic is spotless.' },
-    { name: 'Michael Chen', role: 'Patient', content: 'Professional and efficient. They explained everything clearly and the results were fantastic.' },
+    { name: tTestimonials('sarah.name'), role: tTestimonials('sarah.role'), content: tTestimonials('sarah.content'), seed: 'patient1' },
+    { name: tTestimonials('michael.name'), role: tTestimonials('michael.role'), content: tTestimonials('michael.content'), seed: 'patient2' },
   ];
 
   return (
@@ -45,20 +50,20 @@ export default function Home() {
             >
               <div className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
                 <span className="mr-2 flex h-2 w-2 rounded-full bg-primary"></span>
-                Now accepting new patients
+                {tHero('badge')}
               </div>
               <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
-                {t('hero.title')}
+                {tHero('title')}
               </h1>
               <p className="max-w-[600px] text-lg text-muted-foreground md:text-xl">
-                {t('hero.subtitle')}
+                {tHero('subtitle')}
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact" className={buttonVariants({ size: 'lg', className: 'h-12 px-8 text-base' })}>
-                  {t('hero.cta')}
+                  {tHero('cta')}
                 </Link>
                 <Link href="/services" className={buttonVariants({ size: 'lg', variant: 'outline', className: 'h-12 px-8 text-base' })}>
-                  {t('services.viewAll')}
+                  {tServices('viewAll')}
                 </Link>
               </div>
               <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -73,7 +78,7 @@ export default function Home() {
                     />
                   ))}
                 </div>
-                <span>Trusted by 2,000+ happy patients</span>
+                <span>{tHero('trusted')}</span>
               </div>
             </motion.div>
             <motion.div
@@ -97,8 +102,8 @@ export default function Home() {
                     <Star className="h-6 w-6 fill-current" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold">4.9/5 Rating</p>
-                    <p className="text-xs text-muted-foreground">Based on Google Reviews</p>
+                    <p className="text-sm font-bold">{tHero('rating')}</p>
+                    <p className="text-xs text-muted-foreground">{tHero('ratingDesc')}</p>
                   </div>
                 </div>
               </div>
@@ -111,9 +116,9 @@ export default function Home() {
       <section className="py-24">
         <div className="container mx-auto px-4">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">Why Choose Us?</h2>
+            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">{tFeatures('title')}</h2>
             <p className="mx-auto max-w-[700px] text-muted-foreground">
-              We combine years of experience with a passion for excellence to provide the best dental care in the region.
+              {tFeatures('subtitle')}
             </p>
           </div>
           <div className="grid gap-8 md:grid-cols-3">
@@ -145,24 +150,24 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="mb-16 flex flex-col items-end justify-between gap-4 md:flex-row">
             <div className="max-w-[600px]">
-              <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">{t('services.title')}</h2>
+              <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">{tServices('title')}</h2>
               <p className="text-primary-foreground/80">
-                From routine checkups to complex restorative procedures, we offer a comprehensive range of dental services.
+                {tServices('subtitle')}
               </p>
             </div>
             <Link href="/services" className={buttonVariants({ variant: 'secondary' })}>
               <span className="flex items-center gap-2">
-                {t('services.viewAll')} <ArrowRight className="h-4 w-4" />
+                {tServices('viewAll')} <ArrowRight className="h-4 w-4" />
               </span>
             </Link>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[t('services.general'), t('services.cosmetic'), t('services.implants'), t('services.orthodontics')].map((service, i) => (
+            {[tServices('general'), tServices('cosmetic'), tServices('implants'), tServices('orthodontics')].map((service, i) => (
               <div key={i} className="group relative overflow-hidden rounded-2xl bg-white/10 p-6 transition-colors hover:bg-white/20">
                 <h3 className="text-lg font-semibold">{service}</h3>
-                <p className="mt-2 text-sm text-primary-foreground/70">Professional care tailored to your specific needs.</p>
+                <p className="mt-2 text-sm text-primary-foreground/70">{tServices('desc')}</p>
                 <Link href="/services" className="mt-4 flex items-center gap-1 text-sm font-medium opacity-0 transition-opacity group-hover:opacity-100">
-                  Learn more <ChevronRight className="h-4 w-4" />
+                  {tServices('learnMore')} <ChevronRight className="h-4 w-4" />
                 </Link>
               </div>
             ))}
@@ -175,7 +180,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <h2 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl">What Our Patients Say</h2>
+              <h2 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl">{tTestimonials('title')}</h2>
               <div className="space-y-6">
                 {testimonials.map((t, i) => (
                   <Card key={i} className="border-none bg-muted/30">
@@ -188,7 +193,7 @@ export default function Home() {
                       <p className="mb-4 italic text-muted-foreground">"{t.content}"</p>
                       <div className="flex items-center gap-3">
                         <img
-                          src={`https://picsum.photos/seed/patient${i}/50/50`}
+                          src={`https://picsum.photos/seed/${t.seed}/50/50`}
                           alt={t.name}
                           className="h-10 w-10 rounded-full"
                           referrerPolicy="no-referrer"
@@ -212,7 +217,7 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               <div className="absolute bottom-8 left-8 right-8 text-white">
-                <p className="text-2xl font-bold">"I finally found a dentist I can trust. The results are amazing!"</p>
+                <p className="text-2xl font-bold">"{tTestimonials('quote')}"</p>
               </div>
             </div>
           </div>
@@ -223,16 +228,16 @@ export default function Home() {
       <section className="bg-muted/30 py-24">
         <div className="container mx-auto px-4 text-center">
           <div className="mx-auto max-w-[800px] space-y-8">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">Ready for a Better Smile?</h2>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">{tCTA('title')}</h2>
             <p className="text-lg text-muted-foreground">
-              Book your consultation today and take the first step towards a healthier, brighter smile.
+              {tCTA('subtitle')}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className={buttonVariants({ size: 'lg', className: 'h-14 px-10 text-lg' })}>
-                {t('hero.cta')}
+                {tHero('cta')}
               </Link>
               <Link href="/contact" className={buttonVariants({ size: 'lg', variant: 'outline', className: 'h-14 px-10 text-lg' })}>
-                Call Us: +1 (555) 123-4567
+                {tCTA('callUs')}
               </Link>
             </div>
           </div>

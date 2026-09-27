@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+import logo from '../../logo-horizontal.png';
+const directions = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent('Σπυρίδη Σπύρου 5, Βόλος 38221');
+const services = [
+  ['01', 'Απονεύρωση', 'Ενδοδοντική φροντίδα', 'Φροντίδα για το εσωτερικό του δοντιού, με στόχο τη διατήρησή του.'],
+  ['02', 'Εξαγωγή δοντιών', 'Χειρουργική οδοντιατρική', 'Αξιολόγηση και αντιμετώπιση όταν ένα δόντι χρειάζεται να αφαιρεθεί.'],
+  ['03', 'Θεραπεία ούλων', 'Ουλίτιδα & περιοδοντίτιδα', 'Φροντίδα των ούλων και των ιστών που στηρίζουν τα δόντια.'],
+  ['04', 'Λεύκανση δοντιών', 'Αισθητική οδοντιατρική', 'Συζήτηση για τις επιλογές λεύκανσης που ταιριάζουν στο χαμόγελό σας.'],
+  ['05', 'Οδοντικά εμφυτεύματα', 'Αποκατάσταση χαμόγελου', 'Αξιολόγηση των επιλογών για την αντικατάσταση δοντιών που λείπουν.'],
+];
+const structuredData = { '@context': 'https://schema.org', '@type': 'Dentist', name: 'Χαβδούλας Θωμάς', telephone: '+302421022121', address: { '@type': 'PostalAddress', streetAddress: 'Σπυρίδη Σπύρου 5', addressLocality: 'Βόλος', postalCode: '38221', addressCountry: 'GR' } };
+---
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#193b37" />
+    <title>Χαβδούλας Θωμάς | Οδοντίατρος στον Βόλο</title>
+    <meta name="description" content="Οδοντιατρείο Θωμά Χαβδούλα στον Βόλο. Σπυρίδη Σπύρου 5, 382 21. Επικοινωνήστε για ραντεβού στο 24210 22121." />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Μετάβαση στο περιεχόμενο</a>
+    <header class="header wrap">
+      <a class="brand" href="#" aria-label="Χαβδούλας Θωμάς — Αρχική"><img src={logo.src} alt="Χαβδούλας Θωμάς — Χειρουργός Οδοντίατρος" width="1536" height="1024" /></a>
+      <nav aria-label="Κύρια πλοήγηση"><a href="#services">Υπηρεσίες</a><a href="#contact">Το ιατρείο</a></nav>
+      <a class="header-call" href="tel:+302421022121">24210 22121 <span aria-hidden="true">↗</span></a>
+    </header>
+    <main id="main">
+      <section class="hero wrap" aria-labelledby="hero-title">
+        <div class="hero-copy"><p class="eyebrow"><span></span> ΟΔΟΝΤΙΑΤΡΕΙΟ ΣΤΟΝ ΒΟΛΟ</p>
+          <h1 id="hero-title">Η φροντίδα σας.<br />Το χαμόγελό <em>σας.</em></h1>
+          <p class="intro">Κάθε χαμόγελο έχει τη δική του ιστορία.<br />Η φροντίδα του ξεκινά με μια συζήτηση.</p>
+          <a class="button" href="tel:+302421022121">Καλέστε για ραντεβού <span aria-hidden="true">↗</span></a>
+          <div class="hero-address"><span aria-hidden="true">⌖</span> Σπυρίδη Σπύρου 5, Βόλος <a href={directions} target="_blank" rel="noopener noreferrer" aria-label="Οδηγίες για το ιατρείο στο Google Maps">Οδηγίες ↗</a></div>
+        </div>
+        <div class="hero-art" aria-hidden="true"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="sculpture"><svg viewBox="0 0 260 330" fill="none"><path d="M130 60C83 17 24 38 28 110c3 47 22 68 29 121 6 53 26 76 39 36l22-66c6-18 19-18 25 0l22 66c14 40 32 17 39-36 7-53 26-74 29-121 4-72-55-93-103-50Z" stroke="currentColor" stroke-width="2"/><path d="M83 56c29 21 64 21 94 0M61 116c0 25 8 44 15 61" stroke="currentColor" stroke-width="1.5"/></svg></div><span class="art-label">THOMAS CHAVDOULAS</span><span class="art-caption">Φροντίδα με επίκεντρο εσάς.</span><span class="art-star">✳</span></div>
+      </section>
+      <div class="intro-strip"><div class="wrap strip-inner"><span>ΘΩΜΑΣ ΧΑΒΔΟΥΛΑΣ</span><p>Χειρουργός Οδοντίατρος</p><span>ΒΟΛΟΣ, ΜΑΓΝΗΣΙΑ</span></div></div>
+      <section class="services wrap" id="services" aria-labelledby="services-title"><div class="section-heading"><div><p class="eyebrow">01 / ΟΔΟΝΤΙΑΤΡΙΚΗ ΦΡΟΝΤΙΔΑ</p><h2 id="services-title">Για την υγεία.<br /><em>Για το χαμόγελο.</em></h2></div><p>Από τη φροντίδα των δοντιών και των ούλων έως την αποκατάσταση και την αισθητική του χαμόγελου.</p></div>
+        <div class="service-grid">{services.map(([number, title, category, description]) => <article class="service"><span class="service-number">{number}</span><p class="category">{category}</p><h3>{title}</h3><p>{description}</p></article>)}<a class="service service-cta" href="tel:+302421022121"><span aria-hidden="true">↗</span><h3>Ας μιλήσουμε για<br />το χαμόγελό σας.</h3><p>Επικοινωνήστε με το ιατρείο</p></a></div>
+      </section>
+      <section class="contact" id="contact" aria-labelledby="contact-title"><div class="wrap contact-inner"><div><p class="eyebrow">02 / ΕΠΙΚΟΙΝΩΝΙΑ</p><h2 id="contact-title">Το επόμενο βήμα,<br /><em>ένα τηλεφώνημα.</em></h2><p>Για πληροφορίες και προγραμματισμό ραντεβού,<br />επικοινωνήστε μαζί μας τηλεφωνικά.</p><a class="contact-phone" href="tel:+302421022121">24210 22121 <span aria-hidden="true">↗</span></a><a class="mobile-phone" href="tel:+306946417724">Κινητό: 6946 417724 ↗</a></div><div class="address-card"><span class="pin" aria-hidden="true">⌖</span><p class="eyebrow">ΤΟ ΙΑΤΡΕΙΟ</p><h3>Στο κέντρο<br />του Βόλου.</h3><address>Σπυρίδη Σπύρου 5<br />382 21, Βόλος, Μαγνησία</address><a href={directions} target="_blank" rel="noopener noreferrer">Οδηγίες στο Google Maps <span aria-hidden="true">↗</span></a></div></div></section>
+    </main>
+    <footer class="wrap"><p>© {new Date().getFullYear()} Θωμάς Χαβδούλας</p><span>Χειρουργός Οδοντίατρος · Βόλος</span><a href="#">Επιστροφή στην αρχή ↑</a></footer>
+  </body>
+</html>

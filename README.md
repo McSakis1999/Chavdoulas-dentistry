@@ -1,20 +1,20 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Chavdoulas Dentistry
 
-# Run and deploy your AI Studio app
+A fresh Greek-language dentistry website built with Astro and Tailwind CSS, following the CoolingEnergy project setup.
 
-This contains everything you need to run your app locally.
+## Development
 
-View your app in AI Studio: https://ai.studio/apps/0fce7d3b-3d47-49fa-a2f9-9819cdb2f773
+Requires Node.js 22.19 or later.
 
-## Run Locally
+```sh
+npm install
+npm run dev
+```
 
-**Prerequisites:**  Node.js
+`npm run build` generates the static website in `dist/`. `npm run preview` serves that build locally.
 
+## Content
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+The homepage is in `src/pages/index.astro`; styles are in `src/styles/global.css`. The original four logo files remain at the repository root. The horizontal transparent logo is imported directly by Astro.
+
+Contact details and services come from the supplied practice information. The decorative illustration does not depict the actual practice. Before launch, confirm all content with the dentist, set the production domain in `astro.config.mjs`, and add any approved photography or professional biography. Booking is by telephone; there is no form, analytics, or third-party map embed.

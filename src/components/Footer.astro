@@ -1,0 +1,14 @@
+---
+import CookieConsent from './CookieConsent.astro';
+const links = [['Υπηρεσίες', 'services'], ['Ο γιατρός', 'doctor'], ['Το ιατρείο', 'practice'], ['Συχνές ερωτήσεις', 'faq'], ['Επικοινωνία', 'contact']];
+---
+<footer class="site-footer">
+  <div class="wrap footer-main">
+    <div class="footer-about"><a class="footer-name" href="/">Θωμάς Χαβδούλας<span>ΧΕΙΡΟΥΡΓΟΣ ΟΔΟΝΤΙΑΤΡΟΣ</span></a><p>Φροντίδα για την υγεία των δοντιών και το χαμόγελό σας, στο κέντρο του Βόλου.</p><p class="footer-tax">ΑΦΜ: <span>προς συμπλήρωση</span></p><div class="footer-socials" aria-label="Κοινωνικά δίκτυα — αναμένονται τα προφίλ"><button type="button" disabled aria-label="Instagram — το προφίλ θα προστεθεί"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></button><button type="button" disabled aria-label="Facebook — το προφίλ θα προστεθεί"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 21V12h3l1-4h-4V6c0-1 1-2 2-2h2V1h-3c-4 0-5 3-5 5v2H7v4h3v9"/></svg></button></div><p class="footer-placeholder">Τα κοινωνικά προφίλ θα προστεθούν σύντομα.</p></div>
+    <nav class="footer-nav" aria-label="Πλοήγηση υποσέλιδου"><h2>Εξερευνήστε</h2>{links.map(([label, anchor]) => <a href={`/#${anchor}`}>{label}</a>)}</nav>
+    <div class="footer-contact"><h2>Επικοινωνία</h2><address>Σπυρίδη Σπύρου 5<br/>382 21, Βόλος, Μαγνησία</address><a href="tel:+302421022121">24210 22121</a><a href="tel:+306946417724">6946 417724</a><a class="footer-directions" href="https://www.google.com/maps/dir/?api=1&destination=Σπυρίδη+Σπύρου+5,+Βόλος+38221" target="_blank" rel="noopener noreferrer">Οδηγίες πρόσβασης ↗</a></div>
+    <div class="footer-hours"><h2>Ώρες λειτουργίας</h2><p class="footer-placeholder">Ενδεικτικό ωράριο · προς επιβεβαίωση</p><dl><div><dt>Δευτέρα – Παρασκευή</dt><dd>09:00 – 17:00</dd></div><div><dt>Σάββατο – Κυριακή</dt><dd>Κλειστά</dd></div></dl><p class="footer-booking">Επικοινωνήστε τηλεφωνικά για διαθεσιμότητα και ραντεβού.</p></div>
+  </div>
+  <div class="wrap footer-bottom"><p>© {new Date().getFullYear()} Θωμάς Χαβδούλας</p><nav aria-label="Νομικές πληροφορίες"><a href="/privacy/">Προσωπικά δεδομένα (GDPR)</a><a href="/terms/">Όροι χρήσης</a><button type="button" data-cookie-settings hidden>Ρυθμίσεις cookies</button></nav><a href="#">Στην αρχή ↑</a></div>
+</footer>
+<CookieConsent />

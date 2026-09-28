@@ -1,0 +1,47 @@
+<dialog class="cookie-dialog" aria-labelledby="cookie-title" aria-describedby="cookie-description">
+  <form method="dialog">
+    <p class="eyebrow">Η ΙΔΙΩΤΙΚΟΤΗΤΑ ΣΑΣ</p>
+    <h2 id="cookie-title">Λίγα λόγια για τα cookies.</h2>
+    <p id="cookie-description">Αποθηκεύουμε την επιλογή σας σε αυτή τη συσκευή. Τα προαιρετικά cookies στατιστικών βοηθούν να κατανοούμε πώς χρησιμοποιείται ο ιστότοπος, μόνο με τη συγκατάθεσή σας.</p>
+    <p class="cookie-note">Το Google Analytics δεν είναι ακόμη ενεργό. Ο ενσωματωμένος χάρτης Google είναι ξεχωριστή υπηρεσία τρίτου. <a href="/privacy/">Πολιτική απορρήτου ↗</a></p>
+    <details class="cookie-settings"><summary>Προσαρμογή επιλογών</summary><div class="cookie-option"><div><strong>Απαραίτητη αποθήκευση</strong><p>Διατηρεί την προτίμησή σας για τα cookies.</p></div><span>Πάντα ενεργή</span></div><label class="cookie-option"><div><strong>Στατιστικά επισκεψιμότητας</strong><p>Προαιρετική ανάλυση μέσω Google Analytics, όταν προστεθεί.</p></div><input type="checkbox" name="analytics" aria-label="Στατιστικά επισκεψιμότητας" /></label><button class="cookie-save" type="button" data-consent="save">Αποθήκευση επιλογών</button></details>
+    <div class="cookie-actions"><button type="button" data-consent="reject">Μόνο απαραίτητα</button><button type="button" data-consent="accept">Αποδοχή όλων</button></div>
+    <p class="cookie-hint">Αλλάξτε την επιλογή σας οποτεδήποτε από τις «Ρυθμίσεις cookies».</p>
+  </form>
+</dialog>
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('.cookie-dialog')!;
+  const checkbox = dialog.querySelector<HTMLInputElement>('input[name="analytics"]')!;
+  const key = 'chavdoulas-consent-v1';
+  const lifetime = 180 * 24 * 60 * 60 * 1000;
+  type Consent = { version: 1; analytics: boolean; savedAt: number };
+  let current: Consent | null = null;
+  try {
+    const saved = JSON.parse(localStorage.getItem(key) || 'null');
+    if (saved?.version === 1 && typeof saved.analytics === 'boolean' && typeof saved.savedAt === 'number' && saved.savedAt <= Date.now() && Date.now() - saved.savedAt < lifetime) current = saved;
+  } catch { /* Storage may be unavailable; the dialog still works for this visit. */ }
+  // Integration hook only: no analytics script or network request is loaded here.
+  // Future analytics must read this state before loading and handle withdrawal.
+  function publish() {
+    document.documentElement.dataset.analyticsConsent = current?.analytics ? 'granted' : 'denied';
+    window.dispatchEvent(new CustomEvent('cookie-consent-change', { detail: { analytics: current?.analytics ?? false } }));
+  }
+  publish();
+  checkbox.checked = current?.analytics ?? false;
+  if (!current) dialog.showModal();
+  document.querySelectorAll<HTMLButtonElement>('[data-cookie-settings]').forEach(button => {
+    button.hidden = false;
+    button.addEventListener('click', () => {
+      checkbox.checked = current?.analytics ?? false;
+      dialog.querySelector('details')!.open = true;
+      dialog.showModal();
+    });
+  });
+  dialog.querySelectorAll<HTMLButtonElement>('[data-consent]').forEach(button => button.addEventListener('click', () => {
+    current = { version: 1, analytics: button.dataset.consent === 'accept' || (button.dataset.consent === 'save' && checkbox.checked), savedAt: Date.now() };
+    try { localStorage.setItem(key, JSON.stringify(current)); } catch { /* Keep the choice in memory. */ }
+    publish();
+    dialog.close();
+  }));
+  // Escape dismisses without granting consent; preferences remain unchanged.
+</script>

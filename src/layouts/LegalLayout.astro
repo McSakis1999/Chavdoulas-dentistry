@@ -1,0 +1,7 @@
+---
+import '../styles/global.css';
+import Footer from '../components/Footer.astro';
+interface Props { title: string }
+const { title } = Astro.props;
+---
+<!doctype html><html lang="el"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content="noindex"/><title>{title} | Θωμάς Χαβδούλας</title></head><body class="legal-page"><header class="legal-header wrap"><a href="/">Θωμάς Χαβδούλας</a><a href="/">← Επιστροφή στην αρχική</a></header><main class="legal-content wrap"><p class="eyebrow">ΠΛΗΡΟΦΟΡΙΕΣ ΙΣΤΟΤΟΠΟΥ</p><h1>{title}</h1><p class="legal-draft">Προσχέδιο για έλεγχο · απαιτεί συμπλήρωση και έγκριση πριν από τη δημοσίευση.</p><slot/></main><Footer/></body></html>

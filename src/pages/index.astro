@@ -1,6 +1,11 @@
 ---
 import '../styles/global.css';
 import logo from '../../logo-horizontal.png';
+import { doctor, gallery, faqs } from '../data/practice';
+import ServiceIcon from '../components/ServiceIcon.astro';
+import Footer from '../components/Footer.astro';
+const mapUrl = 'https://maps.google.com/maps?q=' + encodeURIComponent('Σπυρίδη Σπύρου 5, Βόλος 38221') + '&output=embed';
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(({ question, answer }) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) };
 const directions = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent('Σπυρίδη Σπύρου 5, Βόλος 38221');
 const services = [
   ['01', 'Απονεύρωση', 'Ενδοδοντική φροντίδα', 'Φροντίδα για το εσωτερικό του δοντιού, με στόχο τη διατήρησή του.'],
@@ -20,14 +25,20 @@ const structuredData = { '@context': 'https://schema.org', '@type': 'Dentist', n
     <title>Χαβδούλας Θωμάς | Οδοντίατρος στον Βόλο</title>
     <meta name="description" content="Οδοντιατρείο Θωμά Χαβδούλα στον Βόλο. Σπυρίδη Σπύρου 5, 382 21. Επικοινωνήστε για ραντεβού στο 24210 22121." />
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <meta property="og:title" content="Θωμάς Χαβδούλας — Οδοντίατρος στον Βόλο" />
+    <meta property="og:description" content="Γνωρίστε το ιατρείο, τις υπηρεσίες μας και βρείτε απαντήσεις σε συχνές ερωτήσεις. Σπυρίδη Σπύρου 5, Βόλος." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="el_GR" />
   </head>
   <body>
     <a class="skip-link" href="#main">Μετάβαση στο περιεχόμενο</a>
-    <header class="header wrap">
+    <header class="site-header"><div class="header wrap">
       <a class="brand" href="#" aria-label="Χαβδούλας Θωμάς — Αρχική"><img src={logo.src} alt="Χαβδούλας Θωμάς — Χειρουργός Οδοντίατρος" width="1536" height="1024" /></a>
-      <nav aria-label="Κύρια πλοήγηση"><a href="#services">Υπηρεσίες</a><a href="#contact">Το ιατρείο</a></nav>
-      <a class="header-call" href="tel:+302421022121">24210 22121 <span aria-hidden="true">↗</span></a>
-    </header>
+      <nav aria-label="Κύρια πλοήγηση"><a href="#services">Υπηρεσίες</a><a href="#doctor">Ο γιατρός</a><a href="#practice">Το ιατρείο</a><a href="#faq">Ερωτήσεις</a></nav>
+      <a class="header-call" href="tel:+302421022121"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m7 3 3 5-2 2c1 3 3 5 6 6l2-2 5 3c0 3-2 4-4 4C10 20 4 14 3 7c0-2 1-4 4-4Z" stroke-linejoin="round" /></svg><span class="call-copy">Κλείστε ραντεβού<small>24210 22121</small></span><span class="call-arrow" aria-hidden="true">↗</span></a>
+      <details class="mobile-menu"><summary aria-label="Μενού πλοήγησης"><span class="menu-lines" aria-hidden="true"></span></summary><nav aria-label="Πλοήγηση κινητού"><p class="eyebrow">ΦΡΟΝΤΙΔΑ ΓΙΑ ΤΟ ΧΑΜΟΓΕΛΟ ΣΑΣ</p><a href="#services">Υπηρεσίες <span aria-hidden="true">01</span></a><a href="#doctor">Ο γιατρός <span aria-hidden="true">02</span></a><a href="#practice">Το ιατρείο <span aria-hidden="true">03</span></a><a href="#faq">Συχνές ερωτήσεις <span aria-hidden="true">04</span></a><a href="#contact">Επικοινωνία <span aria-hidden="true">↗</span></a><p class="menu-address">Σπυρίδη Σπύρου 5 · Βόλος</p></nav></details>
+    </div></header>
     <main id="main">
       <section class="hero wrap" aria-labelledby="hero-title">
         <div class="hero-copy"><p class="eyebrow"><span></span> ΟΔΟΝΤΙΑΤΡΕΙΟ ΣΤΟΝ ΒΟΛΟ</p>
@@ -40,10 +51,51 @@ const structuredData = { '@context': 'https://schema.org', '@type': 'Dentist', n
       </section>
       <div class="intro-strip"><div class="wrap strip-inner"><span>ΘΩΜΑΣ ΧΑΒΔΟΥΛΑΣ</span><p>Χειρουργός Οδοντίατρος</p><span>ΒΟΛΟΣ, ΜΑΓΝΗΣΙΑ</span></div></div>
       <section class="services wrap" id="services" aria-labelledby="services-title"><div class="section-heading"><div><p class="eyebrow">01 / ΟΔΟΝΤΙΑΤΡΙΚΗ ΦΡΟΝΤΙΔΑ</p><h2 id="services-title">Για την υγεία.<br /><em>Για το χαμόγελο.</em></h2></div><p>Από τη φροντίδα των δοντιών και των ούλων έως την αποκατάσταση και την αισθητική του χαμόγελου.</p></div>
-        <div class="service-grid">{services.map(([number, title, category, description]) => <article class="service"><span class="service-number">{number}</span><p class="category">{category}</p><h3>{title}</h3><p>{description}</p></article>)}<a class="service service-cta" href="tel:+302421022121"><span aria-hidden="true">↗</span><h3>Ας μιλήσουμε για<br />το χαμόγελό σας.</h3><p>Επικοινωνήστε με το ιατρείο</p></a></div>
+        <div class="service-grid">{services.map(([number, title, category, description]) => <article class="service"><div class="service-top"><span class="service-icon"><ServiceIcon service={number} /></span><span class="service-number">{number}</span></div><p class="category">{category}</p><h3>{title}</h3><p>{description}</p></article>)}<a class="service service-cta" href="tel:+302421022121"><span aria-hidden="true">↗</span><h3>Ας μιλήσουμε για<br />το χαμόγελό σας.</h3><p>Επικοινωνήστε με το ιατρείο</p></a></div>
       </section>
-      <section class="contact" id="contact" aria-labelledby="contact-title"><div class="wrap contact-inner"><div><p class="eyebrow">02 / ΕΠΙΚΟΙΝΩΝΙΑ</p><h2 id="contact-title">Το επόμενο βήμα,<br /><em>ένα τηλεφώνημα.</em></h2><p>Για πληροφορίες και προγραμματισμό ραντεβού,<br />επικοινωνήστε μαζί μας τηλεφωνικά.</p><a class="contact-phone" href="tel:+302421022121">24210 22121 <span aria-hidden="true">↗</span></a><a class="mobile-phone" href="tel:+306946417724">Κινητό: 6946 417724 ↗</a></div><div class="address-card"><span class="pin" aria-hidden="true">⌖</span><p class="eyebrow">ΤΟ ΙΑΤΡΕΙΟ</p><h3>Στο κέντρο<br />του Βόλου.</h3><address>Σπυρίδη Σπύρου 5<br />382 21, Βόλος, Μαγνησία</address><a href={directions} target="_blank" rel="noopener noreferrer">Οδηγίες στο Google Maps <span aria-hidden="true">↗</span></a></div></div></section>
+      <section class="doctor-section" id="doctor" aria-labelledby="doctor-title">
+        <div class="wrap doctor-grid" data-reveal>
+          <div class="doctor-visual"><span class="eyebrow">THOMAS CHAVDOULAS</span>{doctor.portrait ? <img src={doctor.portrait} alt="Θωμάς Χαβδούλας, Χειρουργός Οδοντίατρος" width="600" height="720" loading="lazy" /> : <div class="doctor-monogram" aria-hidden="true">Θ<span>Χ</span></div>}<p>Χειρουργός Οδοντίατρος<span>Βόλος, Μαγνησία</span></p></div>
+          <div class="doctor-copy"><p class="eyebrow">02 / Ο ΓΙΑΤΡΟΣ</p><h2 id="doctor-title">Θωμάς Χαβδούλας.<br /><em>Η γνωριμία ξεκινά εδώ.</em></h2><p class="body-copy">{doctor.biography}</p><div class="credentials"><p class="sample-label">Ενδεικτικό βιογραφικό · προς επιβεβαίωση</p>{doctor.credentials.map(item => <div class="credential"><span aria-hidden="true">↗</span><div><h3>{item.title}</h3><p>{item.detail}</p></div></div>)}</div><a class="text-link" href="tel:+302421022121">Ας γνωριστούμε από κοντά <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </section>
+      <section class="practice wrap" id="practice" aria-labelledby="practice-title">
+        <div class="section-heading" data-reveal><div><p class="eyebrow">03 / ΜΙΑ ΜΑΤΙΑ ΣΤΟ ΙΑΤΡΕΙΟ</p><h2 id="practice-title">Ο χώρος πίσω<br /><em>από τη φροντίδα.</em></h2></div><p>Μια πρώτη γνωριμία με τον χώρο και τον εξοπλισμό του οδοντιατρείου, πριν από την επίσκεψή σας.</p></div>
+        <div class="practice-gallery">{gallery.map((photo, index) => <figure class:list={['practice-photo', { 'equipment-photo': index === 1 }]} data-reveal>{photo.src ? <img src={photo.src} alt={photo.alt} width="1200" height="800" loading="lazy" /> : <div class="photo-placeholder"><span aria-hidden="true">⌖</span><p>Φωτογραφία σύντομα</p></div>}<figcaption><span class="eyebrow">{photo.category}</span><h3>{photo.title}</h3><span class="photo-index">0{index + 1}</span></figcaption></figure>)}</div>
+        <p class="gallery-note">Ενδεικτική εικόνα χώρου με τεχνητή νοημοσύνη · θα αντικατασταθεί με πραγματικές φωτογραφίες του ιατρείου.</p>
+      </section>
+      <section class="faq-section wrap" id="faq" aria-labelledby="faq-title">
+        <div class="faq-intro" data-reveal><p class="eyebrow">04 / ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</p><h2 id="faq-title">Μικρές απορίες.<br /><em>Χρήσιμες απαντήσεις.</em></h2><p class="body-copy">Πριν από το ραντεβού σας, βρείτε εδώ μερικές πρώτες απαντήσεις.</p><a class="text-link" href="tel:+302421022121">Έχετε άλλη ερώτηση; Καλέστε μας ↗</a></div>
+        <div class="faq-list" data-reveal>{faqs.map((faq, index) => <details class="faq-item"><summary><span class="faq-number">0{index + 1}</span><h3>{faq.question}</h3><span class="faq-toggle" aria-hidden="true">+</span></summary><div class="faq-answer"><p>{faq.answer}</p>{faq.source && <a href={faq.source} target="_blank" rel="noopener noreferrer">Περισσότερες πληροφορίες: NHS ↗</a>}</div></details>)}<p class="faq-note">Οι πληροφορίες είναι γενικές και δεν αντικαθιστούν την εξατομικευμένη οδοντιατρική εξέταση.</p></div>
+      </section>
+      <section class="contact" id="contact" aria-labelledby="contact-title"><div class="wrap contact-inner"><div data-reveal><p class="eyebrow">05 / ΕΠΙΚΟΙΝΩΝΙΑ</p><h2 id="contact-title">Το επόμενο βήμα,<br /><em>ένα τηλεφώνημα.</em></h2><p>Για πληροφορίες και προγραμματισμό ραντεβού,<br />επικοινωνήστε μαζί μας τηλεφωνικά.</p><a class="contact-phone" href="tel:+302421022121">24210 22121 <span aria-hidden="true">↗</span></a><a class="mobile-phone" href="tel:+306946417724">Κινητό: 6946 417724 ↗</a></div><div class="address-card" data-reveal><span class="pin" aria-hidden="true">⌖</span><p class="eyebrow">ΤΟ ΙΑΤΡΕΙΟ</p><h3>Στο κέντρο<br />του Βόλου.</h3><address>Σπυρίδη Σπύρου 5<br />382 21, Βόλος, Μαγνησία</address><a href={directions} target="_blank" rel="noopener noreferrer">Οδηγίες στο Google Maps <span aria-hidden="true">↗</span></a></div></div><div class="wrap map-panel"><iframe title="Χάρτης: Σπυρίδη Σπύρου 5, Βόλος" src={mapUrl} width="1200" height="360" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a class="map-link" href={directions} target="_blank" rel="noopener noreferrer">Σπυρίδη Σπύρου 5, Βόλος <span>Σχεδιάστε τη διαδρομή σας ↗</span></a></div></section>
     </main>
-    <footer class="wrap"><p>© {new Date().getFullYear()} Θωμάς Χαβδούλας</p><span>Χειρουργός Οδοντίατρος · Βόλος</span><a href="#">Επιστροφή στην αρχή ↑</a></footer>
+    <Footer />
+    <a class="floating-call" href="tel:+302421022121" aria-label="Καλέστε για ραντεβού στο 24210 22121"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m7 3 3 5-2 2c1 3 3 5 6 6l2-2 5 3c0 3-2 4-4 4C10 20 4 14 3 7c0-2 1-4 4-4Z" stroke-linejoin="round" /></svg><span>Καλέστε για ραντεβού</span><span aria-hidden="true">↗</span></a>
+    <script>
+      const menu = document.querySelector<HTMLDetailsElement>('.mobile-menu');
+      menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { menu.open = false; }));
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && menu?.open) { menu.open = false; menu.querySelector('summary')?.focus(); }
+      });
+      document.addEventListener('click', event => {
+        if (menu?.open && event.target instanceof Node && !menu.contains(event.target)) menu.open = false;
+      });
+      window.matchMedia('(min-width: 901px)').addEventListener('change', event => { if (event.matches && menu) menu.open = false; });
+      const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (!motion.matches && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) { entry.target.classList.remove('reveal-pending'); observer.unobserve(entry.target); }
+          });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('[data-reveal]').forEach(element => {
+          if (element.getBoundingClientRect().top > window.innerHeight) { element.classList.add('reveal-pending'); observer.observe(element); }
+        });
+        motion.addEventListener('change', () => {
+          if (motion.matches) { document.querySelectorAll('.reveal-pending').forEach(element => element.classList.remove('reveal-pending')); observer.disconnect(); }
+        });
+      }
+    </script>
   </body>
 </html>
